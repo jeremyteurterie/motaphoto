@@ -52,6 +52,7 @@ function motaphoto_setup()
 	register_nav_menus(
 		array(
 			'header' => esc_html__('Primary', 'motaphoto'),
+			'footer' => 'Navigation du footer'
 		)
 	);
 
@@ -146,7 +147,11 @@ function motaphoto_scripts()
 	wp_enqueue_style('motaphoto-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('motaphoto-style', 'rtl', 'replace');
 
+	wp_enqueue_style('theme-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'));
+
+	wp_enqueue_script('jquery');
 	wp_enqueue_script('motaphoto-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_script('theme-scripts', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

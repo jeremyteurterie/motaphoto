@@ -13,22 +13,22 @@
 ?>
 
 <footer id="colophon" class="site-footer">
-	<!-- <div class="site-info">
-			<a href="<?php echo esc_url(__('https://wordpress.org/', 'motaphoto')); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf(esc_html__('Proudly powered by %s', 'motaphoto'), 'WordPress');
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf(esc_html__('Theme: %1$s by %2$s.', 'motaphoto'), 'motaphoto', '<a href="http://underscores.me/">Underscores.me</a>');
-				?>
-		</div>.site-info -->
+	<div class="site-info">
+		<ul class="footer">
+			<li class="item-footer">
+				<a href="http://motaphoto.local/mentions-legales/">Mentions légales</a>
+			</li>
+			<li class="item-footer">
+				<a href="http://motaphoto.local/vie-privee/">Vie privée</a>
+			</li>
+			<li class="item-footer">
+				<span>Tous droits réservés</span>
+			</li>
+		</ul>
+	</div>
 </footer><!-- #colophon -->
 </div><!-- #page -->
-
+<?php get_template_part('template-parts/modale-contact'); ?>
 <?php wp_footer(); ?>
 
 </body>
