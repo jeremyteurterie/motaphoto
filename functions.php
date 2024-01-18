@@ -185,3 +185,62 @@ require get_template_directory() . '/inc/customizer.php';
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+function photo_register_post_types()
+{
+
+	// CPT Photo
+	$labels = array(
+		'name' => 'photos',
+		'all_items' => 'Toutes les photos',  // affiché dans le sous menu
+		'singular_name' => 'Photo',
+		'add_new_item' => 'Ajouter une photo',
+		'edit_item' => 'Modifier la photo',
+		'menu_name' => 'Photos'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'show_in_rest' => true,
+		'has_archive' => true,
+		'supports' => array('title', 'editor', 'thumbnail'),
+		'menu_position' => 5,
+		'menu_icon' => 'dashicons-admin-customizer',
+	);
+
+	register_post_type('photo', $args);
+
+	// Déclaration de la premiere Taxonomie
+	$labels = array(
+		'name' => 'Catégories',
+		'singular_name' => 'Catégorie',
+		'new_item_name' => 'Nom de la nouvelle Catégorie',
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'show_in_rest' => true,
+		'hierarchical' => true,
+	);
+
+	register_taxonomy('categorie', 'photo', $args);
+
+	// Déclaration de la deuxième Taxonomie
+	$labels = array(
+		'name' => 'Formats',
+		'singular_name' => 'Format',
+		'new_item_name' => 'Nom du nouveau Format',
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'show_in_rest' => true,
+		'hierarchical' => true,
+	);
+
+	register_taxonomy('format', 'photo', $args);
+}
+add_action('init', 'photo_register_post_types'); // Le hook init lance la fonction
