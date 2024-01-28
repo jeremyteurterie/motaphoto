@@ -14,7 +14,7 @@ get_header();
     </div>
 
     <div class="post-photo">
-        <form class='filter-form' action="" method="get">
+        <form class='filter-form' method="get">
             <div class="filter-1">
                 <select class="filter-categorie" name="categorie">
                     <option value="">Catégorie</option>
@@ -85,6 +85,9 @@ get_header();
                 ?>
             </div>
         </section>
+        <div class="button">
+            <button id="load-more" data-page="1">Charger plus</button> <!-- Bouton Charger plus -->
+        </div>
     </div>
 
 </main><!-- #main -->

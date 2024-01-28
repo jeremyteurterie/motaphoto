@@ -23,7 +23,6 @@ function openModale() {
 }
 
 // Fait disparaitre la modale au clic & echap
-
 function closeModale() {
   modaleBox.classList.remove('modale-box-anim-in');
   modaleContent.classList.add('modale-anim-out');

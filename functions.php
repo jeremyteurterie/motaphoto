@@ -146,18 +146,103 @@ function motaphoto_scripts()
 {
 	wp_enqueue_style('motaphoto-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('motaphoto-style', 'rtl', 'replace');
-
 	wp_enqueue_style('theme-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime(get_stylesheet_directory() . '/style.css'));
-
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('motaphoto-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 	wp_enqueue_script('theme-scripts', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
+	wp_enqueue_script('ajax-filtrage', get_template_directory_uri() . '/js/ajax-filtrage.js', array('jquery'), null, true);
+	wp_localize_script('ajax-filtrage', 'ajaxurl', admin_url('admin-ajax.php'));
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
 }
 add_action('wp_enqueue_scripts', 'motaphoto_scripts');
+
+function filtrer_photos()
+{
+	$categorie_id = isset($_POST['categorie']) ? $_POST['categorie'] : '';
+	$format_id = isset($_POST['format']) ? $_POST['format'] : '';
+	$order = isset($_POST['order']) ? $_POST['order'] : 'desc';
+	$paged = isset($_POST['page']) ? $_POST['page'] : 1;
+
+	$args = array(
+		'post_type' => 'photo',
+		'posts_per_page' => 8,
+		'orderby' => 'date',
+		'order' => $order,
+		'paged' => $paged,
+	);
+
+	// Construire la requête de taxonomie conditionnellement
+	$tax_query = array();
+
+	if (!empty($categorie_id)) {
+		$tax_query[] = array(
+			'taxonomy' => 'categorie',
+			'field' => 'id',
+			'terms' => $categorie_id
+		);
+	}
+
+	if (!empty($format_id)) {
+		$tax_query[] = array(
+			'taxonomy' => 'format',
+			'field' => 'id',
+			'terms' => $format_id
+		);
+	}
+
+	if (!empty($tax_query)) {
+		$tax_query['relation'] = 'AND';
+		$args['tax_query'] = $tax_query;
+	}
+
+	$query = new WP_Query($args);
+
+	$is_last_page = ($query->max_num_pages <= $paged); // Vérifiez si c'est la dernière page
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) : $query->the_post();
+			// Le code HTML pour afficher chaque photo
+?>
+			<div class="photo-item">
+				<h3 class="title-photo"><?php the_title(); ?></h3>
+				<?php
+				$categories = get_the_terms(get_the_ID(), 'categorie');
+				if (!empty($categories)) {
+					echo '<h4 class="categorie-photo">' . esc_html($categories[0]->name) . '</h4>';
+				}
+				?>
+				<a href="<?php the_permalink(); ?>">
+					<?php the_post_thumbnail('large'); // Vous pouvez personnaliser la taille de la miniature 
+					?>
+				</a>
+			</div>
+<?php
+		endwhile;
+		if ($is_last_page) {
+			// Ajouter un marqueur pour indiquer qu'il n'y a plus de photos à charger
+			echo '<span id="no-more-posts"></span>';
+		}
+	} else {
+		// Ne pas renvoyer de message si aucune photo n'est trouvée pour les requêtes AJAX
+		if ($paged > 1) {
+			echo '';
+		} else {
+			echo 'Aucune photo trouvée.';
+		}
+	}
+
+	wp_reset_postdata();
+
+	die();
+}
+add_action('wp_ajax_filtrer_photos', 'filtrer_photos');
+add_action('wp_ajax_nopriv_filtrer_photos', 'filtrer_photos');
+
+
+
 
 /**
  * Implement the Custom Header feature.
