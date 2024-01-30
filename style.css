@@ -1428,3 +1428,73 @@ p {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+
+.photo_detail {
+  width: 100%;
+  max-width: 1190px;
+  margin: auto;
+  padding: 30px 20px 0;
+  font-family: 'Space Mono', monospace;
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo__info--description {
+  justify-content: flex-end;
+  border-bottom: 1px solid #000;
+}
+
+.container__photo {
+  text-transform: uppercase;
+}
+
+.photo__info {
+  align-content: flex-end;
+}
+
+.photo_detail li {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+}
+
+ul li {
+  display: inline-block;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.title-single-photo {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 66px;
+  line-height: 58px;
+  width: 80%;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.openLightbox {
+  position: absolute;
+  cursor: pointer;
+  background: url(./assets/img/fullscreen.png) center center / 100% 100%;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
