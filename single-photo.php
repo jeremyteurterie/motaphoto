@@ -27,8 +27,9 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 							echo '<a rel="prev" href="' . get_permalink($prev_post_id) . '" title="' . $prev_title . '" class="previous_post">';
 							if (has_post_thumbnail($prev_post_id)) {
 						?>
-								<div>
-									<?php echo get_the_post_thumbnail($prev_post_id, array(77, 60)); ?></div>
+								<div class="photo-miniature">
+									<?php echo get_the_post_thumbnail($prev_post_id, array(77, 60)); ?>
+								</div>
 						<?php
 							} else {
 								echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/no-image.jpeg" alt="Pas de photo" width="77px" ><br>';
@@ -47,7 +48,9 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 							echo  '<a rel="next" href="' . get_permalink($next_post_id) . '" title="' . $next_title . '" class="next_post">';
 							if (has_post_thumbnail($next_post_id)) {
 						?>
-								<div><?php echo get_the_post_thumbnail($next_post_id, array(77, 60)); ?></div>
+								<div class="photo-miniature">
+									<?php echo get_the_post_thumbnail($next_post_id, array(77, 60)); ?>
+								</div>
 						<?php
 							} else {
 								echo '<img src="' . get_stylesheet_directory_uri() . '/assets/img/no-image.jpeg" alt="Pas de photo" width="77px" ><br>';

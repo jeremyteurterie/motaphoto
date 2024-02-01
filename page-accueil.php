@@ -67,8 +67,9 @@ get_header();
                             <h3 class="title-photo"><?php the_title(); ?></h3>
                             <?php
                             $categories = get_the_terms(get_the_ID(), 'categorie');
-                            if (!empty($categories)) {
-                                echo '<h4 class="categorie-photo">' . esc_html($categories[0]->name) . '</h4>';
+                            $category_name = !empty($categories) ? esc_html($categories[0]->name) : '';
+                            if (!empty($category_name)) {
+                                echo '<h4 class="categorie-photo">' . $category_name . '</h4>';
                             }
                             ?>
                             <?php the_post_thumbnail('large'); // Affiche l'image à la une 
@@ -78,11 +79,11 @@ get_header();
                             </a>
                             <form>
                                 <input type="hidden" name="postid" class="postid" value="<?php the_id(); ?>">
-
-                                <a class="openLightbox" title="Afficher la photo en plein écran" alt="Afficher la photo en plein écran" data-postid="<?php echo get_the_id(); ?>" data-arrow="true">
+                                <a href="<?php the_post_thumbnail_url('full'); ?>" class="openLightbox" title="Afficher la photo en plein écran" data-fancybox="gallery" data-caption="<?php echo esc_attr(get_the_title()) . (!empty($category_name) ? ' - ' . $category_name : ''); ?>" data-postid="<?php echo get_the_id(); ?>" data-arrow="true">
                                 </a>
                             </form>
                         </div>
+
 
                 <?php
                     endwhile;

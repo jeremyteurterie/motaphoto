@@ -152,6 +152,16 @@ function motaphoto_scripts()
 	wp_enqueue_script('theme-scripts', get_stylesheet_directory_uri() . '/js/script.js', array('jquery'), '1.0', true);
 	wp_enqueue_script('ajax-filtrage', get_template_directory_uri() . '/js/ajax-filtrage.js', array('jquery'), null, true);
 	wp_localize_script('ajax-filtrage', 'ajaxurl', admin_url('admin-ajax.php'));
+	wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), null, true);
+
+	// Ajouter le CSS de FancyBox
+	wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
+
+	// Assurez-vous que jQuery est chargé
+	wp_enqueue_script('jquery');
+
+	// Ajouter le JS de FancyBox
+	wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), null, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -210,14 +220,21 @@ function filtrer_photos()
 				<h3 class="title-photo"><?php the_title(); ?></h3>
 				<?php
 				$categories = get_the_terms(get_the_ID(), 'categorie');
-				if (!empty($categories)) {
-					echo '<h4 class="categorie-photo">' . esc_html($categories[0]->name) . '</h4>';
+				$category_name = !empty($categories) ? esc_html($categories[0]->name) : '';
+				if (!empty($category_name)) {
+					echo '<h4 class="categorie-photo">' . $category_name . '</h4>';
 				}
 				?>
-				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail('large'); // Vous pouvez personnaliser la taille de la miniature 
-					?>
+				<?php the_post_thumbnail('large'); // Affiche l'image à la une 
+				?>
+				<a href="<?php the_permalink(); ?>" class="detail-photo-link">
+					<span class="detail-photo"></span>
 				</a>
+				<form>
+					<input type="hidden" name="postid" class="postid" value="<?php the_id(); ?>">
+					<a href="<?php the_post_thumbnail_url('full'); ?>" class="openLightbox" title="Afficher la photo en plein écran" data-fancybox="gallery" data-caption="<?php echo esc_attr(get_the_title()) . (!empty($category_name) ? ' - ' . $category_name : ''); ?>" data-postid="<?php echo get_the_id(); ?>" data-arrow="true">
+					</a>
+				</form>
 			</div>
 <?php
 		endwhile;

@@ -58,5 +58,9 @@
 					)
 				);
 				?>
+				<div class="burger-button">
+					<span></span>
+				</div>
+
 			</nav><!-- #site-navigation -->
 		</header><!-- #masthead -->
