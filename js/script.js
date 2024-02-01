@@ -1,6 +1,7 @@
 // Gestion de la modale de contact
 const modaleContent = document.querySelector('.modale-content');
 const btnContact = document.querySelector('.myModal');
+const btnModale = document.querySelector('.btnModal');
 const modaleBox = document.querySelector('.modale-box');
 const postCta = document.getElementById('js-post-cta');
 const refPhoto = document.getElementById('ref-photo');
@@ -9,6 +10,7 @@ const btnContactMobile = document.getElementsByClassName('hfe-menu-item');
 
 // Fait apparaitre la modale au clic
 btnContact.addEventListener('click', openModale);
+btnModale.addEventListener('click', openModale);
 // btnContactMobile.addEventListener('click', openModale);
 if (postCta != null) {
   postCta.addEventListener('click', openModale);

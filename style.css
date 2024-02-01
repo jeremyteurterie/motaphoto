@@ -1424,7 +1424,21 @@ p {
   color: #000000;
   font-weight: 400;
   line-height: 20px;
-  padding: 16px 100px;
+  padding: 12px 95px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+#btn-single-photo {
+  font-family: 'Space Mono', Sans-serif;
+  background-color: #d8d8d8;
+  font-size: 12px;
+  border: none;
+  border-radius: 2px;
+  text-align: center;
+  color: #000000;
+  font-weight: 400;
+  line-height: 20px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
@@ -1435,6 +1449,11 @@ p {
   margin: auto;
   padding: 30px 20px 0;
   font-family: 'Space Mono', monospace;
+}
+
+.photo_detail .btn {
+  padding: 12px 95px;
+  margin-left: 100px;
 }
 
 .flexrow {
@@ -1468,6 +1487,25 @@ p {
   padding-bottom: 10px;
 }
 
+.photo_detail h5 {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.photo__contact {
+  padding: 20px 0 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #000;
+}
+
+.photo__others {
+  padding: 50px 0;
+}
+
 ul li {
   display: inline-block;
 }
@@ -1489,12 +1527,41 @@ ul {
 .openLightbox {
   position: absolute;
   cursor: pointer;
-  background: url(./assets/img/fullscreen.png) center center / 100% 100%;
+  background: url(./assets/images/sign_full_screen.png) center center / 100%
+    100%;
   background-repeat: no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   top: 20px;
-  right: 20px;
+  right: 30px;
   opacity: 0;
   transition: all 1s ease-in-out;
+}
+
+.site__navigation__prev,
+.site__navigation__next {
+  text-align: center;
+  padding: 0 10px;
+}
+
+.detail-photo {
+  position: absolute;
+  cursor: pointer;
+  background: url(./assets/images/Icon_eye.png) center center / 100% 100%;
+  background-repeat: no-repeat;
+  width: 45px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.photo-item:hover .detail-photo {
+  opacity: 1;
+}
+
+.photo-item:hover .openLightbox {
+  opacity: 1;
 }

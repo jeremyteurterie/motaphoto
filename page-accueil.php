@@ -71,11 +71,19 @@ get_header();
                                 echo '<h4 class="categorie-photo">' . esc_html($categories[0]->name) . '</h4>';
                             }
                             ?>
-                            <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('large'); // Vous pouvez personnaliser la taille de la miniature 
-                                ?>
+                            <?php the_post_thumbnail('large'); // Affiche l'image à la une 
+                            ?>
+                            <a href="<?php the_permalink(); ?>" class="detail-photo-link">
+                                <span class="detail-photo"></span>
                             </a>
+                            <form>
+                                <input type="hidden" name="postid" class="postid" value="<?php the_id(); ?>">
+
+                                <a class="openLightbox" title="Afficher la photo en plein écran" alt="Afficher la photo en plein écran" data-postid="<?php echo get_the_id(); ?>" data-arrow="true">
+                                </a>
+                            </form>
                         </div>
+
                 <?php
                     endwhile;
                     wp_reset_postdata();
