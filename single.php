@@ -12,6 +12,9 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
+	<div>
+		<h1>hello</h1>
+	</div>
 
 	<?php
 	while (have_posts()) :

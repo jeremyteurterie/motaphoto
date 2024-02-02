@@ -27,7 +27,7 @@ $annee = get_field('annee');
             <h2 class="title-single-photo"><?php the_title(); ?></h2>
             <ul class="flexcolumn">
                 <!-- Affiche les données ACF -->
-                <li class="reference">Référence :
+                <li>Référence :
                     <?php
                     // $reference = get_post_meta(get_the_ID(), 'reference', true);
                     if ($reference) {

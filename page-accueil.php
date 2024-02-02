@@ -63,6 +63,7 @@ get_header();
                     while ($query->have_posts()) :
                         $query->the_post();
                 ?>
+
                         <div class="photo-item">
                             <h3 class="title-photo"><?php the_title(); ?></h3>
                             <?php

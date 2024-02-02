@@ -344,26 +344,5 @@ function photo_register_post_types()
 	);
 
 	register_taxonomy('format', 'photo', $args);
-
-	function add_custom_meta_box()
-	{
-		add_meta_box('reference_meta', 'Référence', 'reference_meta_callback', 'photo', 'side');
-	}
-
-	function reference_meta_callback($post)
-	{
-		$reference = get_post_meta($post->ID, 'reference', true);
-		wp_nonce_field('save_reference_meta', 'reference_meta_nonce');
-		echo '<input type="text" name="reference" value="' . esc_attr($reference) . '">';
-	}
-
-	function save_reference_meta($post_id)
-	{
-		if (!isset($_POST['reference_meta_nonce']) || !wp_verify_nonce($_POST['reference_meta_nonce'], 'save_reference_meta')) {
-			return;
-		}
-	}
 }
-add_action('add_meta_boxes', 'add_custom_meta_box');
-add_action('save_post', 'save_reference_meta');
 add_action('init', 'photo_register_post_types'); // Le hook init lance la fonction
