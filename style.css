@@ -209,6 +209,11 @@ a {
   animation: slideToBottom 0.5s both ease-in-out;
 }
 
+.modale-content input,
+.modale-content textarea {
+  text-transform: uppercase;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -16,7 +16,10 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 			<?php get_template_part('template-parts/photo-detail'); ?>
 
 			<div class="photo__contact flexrow">
-				<p>Cette photo vous intéresse ? <button id='btn-single-photo' class="btn btnModal" type="button"><?php echo do_shortcode('Contact'); ?></button></p>
+				<p>Cette photo vous intéresse ? <button id='btn-single-photo' class="btn btnModal" type="button" data-photo-ref="<?php echo esc_attr(get_field('reference')); ?>">
+						<?php echo do_shortcode('Contact'); ?>
+					</button>
+				</p>
 				<div class="site__navigation flexrow">
 					<div class="site__navigation__prev">
 						<?php

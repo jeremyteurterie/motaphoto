@@ -4,23 +4,39 @@ const btnContact = document.querySelector('.myModal');
 const btnModale = document.querySelector('.btnModal');
 const modaleBox = document.querySelector('.modale-box');
 const postCta = document.getElementById('js-post-cta');
-const refPhoto = document.getElementById('ref-photo');
+// const refPhoto = document.getElementById('ref-photo');
+// const formRefPhoto = document.getElementById('form-ref-photo');
 const formRefPhoto = document.getElementById('form-ref-photo');
 const btnContactMobile = document.getElementsByClassName('hfe-menu-item');
 
 // Fait apparaitre la modale au clic
-btnContact.addEventListener('click', openModale);
-btnModale.addEventListener('click', openModale);
+// btnContact.addEventListener('click', openModale);
+// btnModale.addEventListener('click', openModale);
+
+if (btnContact) {
+  btnContact.addEventListener('click', openModale);
+}
+
+if (btnModale) {
+  btnModale.addEventListener('click', openModale);
+}
+
 // btnContactMobile.addEventListener('click', openModale);
 if (postCta != null) {
   postCta.addEventListener('click', openModale);
 }
+
 function openModale() {
-  console.log('coucou');
   modaleContent.classList.remove('modale-hide');
   //Ajout de la rèf photo pour single post
-  if (refPhoto != null) {
-    formRefPhoto.value = refPhoto.innerText;
+  // Récupérer la référence de la photo depuis un attribut data sur le bouton qui a été cliqué
+  // Supposons que le bouton a un attribut `data-photo-ref`
+  let photoRef = this.getAttribute('data-photo-ref'); // `this` fait référence à l'élément qui a déclenché l'événement
+
+  // Mettre à jour la valeur de la référence de la photo dans le champ du formulaire dans la modale
+  // Assurez-vous que l'ID ou le nom du champ dans le formulaire correspond à 'form-ref-photo'
+  if (formRefPhoto) {
+    formRefPhoto.value = photoRef;
   }
 }
 
