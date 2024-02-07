@@ -99,20 +99,6 @@ main {
   max-height: 966px;
 }
 
-.title-hero {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: 100%;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 96px;
-  line-height: 142px;
-  font-style: italic;
-  color: transparent;
-}
-
 .footer {
   display: flex;
   justify-content: center;
@@ -1457,9 +1443,20 @@ ul {
   justify-content: flex-end;
 }
 
+.title-hero {
+  position: absolute;
+  z-index: 2; /* S'assure que le texte est au-dessus de l'image */
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 96px;
+  line-height: 142px;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
 .hero-area img {
-  margin: auto;
-  /* object-fit: contain; */
   object-fit: cover;
   object-position: 50% 50%;
   min-width: 100%;
@@ -1476,23 +1473,47 @@ ul {
   overflow: hidden;
 }
 
-.hero-area .title-hero {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  width: 100%;
-  text-transform: uppercase;
+.hero-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  font-size: 96px;
-  line-height: 142px;
-  font-style: italic;
-  color: transparent;
-  /* text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 2px rgb(255, 255, 255); */
-  -webkit-text-stroke: 2px rgb(255, 255, 255);
+  height: auto; /* Ajustez cette valeur selon la hauteur désirée pour votre section hero */
+  position: relative;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 1023px) {
+  .hero-area img {
+    max-width: 100%;
+    height: auto;
+  }
+  .title-hero {
+    display: flex;
+    justify-content: center;
+    font-size: 48px !important;
+  }
+  .filter-form {
+    flex-direction: column !important;
+    gap: 10px;
+  }
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+} */
+
+@media screen and (max-width: 1024px) {
+  .hero-area img {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+    height: auto;
+  }
+  .title-hero {
+    display: flex;
+    justify-content: center;
+    font-size: 48px !important;
+  }
   .filter-form {
     flex-direction: column !important; /* Correction ici */
     gap: 10px;
@@ -1501,17 +1522,19 @@ ul {
     flex-direction: column;
     gap: 10px;
   }
-}
-
-@media screen and (max-width: 959px) {
   .photo_detail {
     padding: 0;
   }
-
   .title-single-photo {
     text-align: center;
   }
-
+  .photo-item img {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+  }
+  .photo-item {
+    display: flex;
+    justify-content: center;
+  }
   .photo__info {
     display: flex;
     flex-direction: column-reverse;
@@ -1611,5 +1634,30 @@ ul {
     width: 80%;
     max-width: 600px;
     height: 500px;
+  }
+  .footer {
+    height: auto;
+  }
+  .footer-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .item-footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .filter-form {
+    flex-direction: column !important; /* Correction ici */
+    gap: 10px;
+  }
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
   }
 }
