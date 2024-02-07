@@ -26,41 +26,31 @@
 	<?php wp_body_open(); ?>
 	<div id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'motaphoto'); ?></a>
+		<header id="header" class="header flexrow">
+			<div class="container-header flexrow">
+				<a href="<?php echo home_url('/'); ?>" aria-label="Page d'accueil de Nathalie Mota">
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/Logo.png" alt="Logo <?php echo bloginfo('name'); ?>">
+				</a>
+				<nav id="navigation">
+					<?php
+					// Affichage du menu main déclaré dans functions.php
+					wp_nav_menu(array('theme_location' => 'header'));
+					?>
+					<button id="modal__burger" class="btn-modal" aria-label="Menu pour la version portable">
+						<span class="line"></span>
+						<span class="line"></span>
+						<span class="line"></span>
+					</button>
 
-		<header id="masthead" class="site-header">
-			<div class="site-branding">
-				<?php
-				the_custom_logo();
-				if (is_front_page() && is_home()) :
-				?>
-					<h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></h1>
-				<?php
-				else :
-				?>
-					<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
-				<?php
-				endif;
-				$motaphoto_description = get_bloginfo('description', 'display');
-				if ($motaphoto_description || is_customize_preview()) :
-				?>
-					<p class="site-description"><?php echo $motaphoto_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-												?></p>
-				<?php endif; ?>
-			</div><!-- .site-branding -->
-
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'motaphoto'); ?></button>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'header',
-						'menu_id'        => 'primary-menu',
-					)
-				);
-				?>
-				<div class="burger-button">
-					<span></span>
-				</div>
-
-			</nav><!-- #site-navigation -->
-		</header><!-- #masthead -->
+					<div id="modal__content" class="modal__content">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'header',
+							)
+						);
+						?>
+					</div>
+				</nav>
+			</div>
+		</header>

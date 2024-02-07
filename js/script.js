@@ -7,7 +7,7 @@ const postCta = document.getElementById('js-post-cta');
 // const refPhoto = document.getElementById('ref-photo');
 // const formRefPhoto = document.getElementById('form-ref-photo');
 const formRefPhoto = document.getElementById('form-ref-photo');
-const btnContactMobile = document.getElementsByClassName('hfe-menu-item');
+const btnContactMobile = document.getElementsByClassName('contactMobile');
 
 // Fait apparaitre la modale au clic
 // btnContact.addEventListener('click', openModale);
@@ -25,6 +25,29 @@ if (btnModale) {
 if (postCta != null) {
   postCta.addEventListener('click', openModale);
 }
+
+// Gestion de la pagination des photos
+(function ($) {
+  $(document).ready(function () {
+    // Gestion de la fermeture et de l'ouverture du menu
+    // dans une modale pour la version mobile
+    $('.btn-modal').click(function (e) {
+      $('.modal__content').toggleClass('animate-modal');
+      $('.modal__content').toggleClass('open');
+      $('.btn-modal').toggleClass('close');
+    });
+    $('a').click(function () {
+      if ($('.modal__content').hasClass('open')) {
+        $('.modal__content').removeClass('animate-modal');
+        $('.modal__content').removeClass('open');
+        $('.btn-modal').removeClass('close');
+      }
+    });
+    $('.contactMobile').click(function (e) {
+      $('.modale-content').removeClass('modale-hide');
+    });
+  });
+})(jQuery);
 
 function openModale() {
   modaleContent.classList.remove('modale-hide');

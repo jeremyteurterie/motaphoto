@@ -169,6 +169,12 @@ function motaphoto_scripts()
 }
 add_action('wp_enqueue_scripts', 'motaphoto_scripts');
 
+function register_my_menu()
+{
+	register_nav_menu('header', "Menu principal");
+}
+add_action('after_setup_theme', 'register_my_menu');
+
 function filtrer_photos()
 {
 	$categorie_id = isset($_POST['categorie']) ? $_POST['categorie'] : '';
