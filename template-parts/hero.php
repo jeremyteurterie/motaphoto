@@ -21,7 +21,6 @@
         //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
         $query_hero = new WP_Query($custom_args);
         ?>
-        <!-- Récupération d'un post photo en mode aléatoire (rand) -->
         <?php while ($query_hero->have_posts()) : ?>
             <?php $query_hero->the_post(); ?>
 

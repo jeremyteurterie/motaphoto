@@ -7,18 +7,9 @@ $categorie = !empty($terms_categorie) ? esc_html($terms_categorie[0]->name) : 'I
 $terms_format = wp_get_post_terms(get_the_ID(), 'format');
 $format = !empty($terms_format) ? esc_html($terms_format[0]->name) : 'Inconnu';
 
-// $term = get_queried_object();
-// $term_id  = get_the_terms(get_the_ID(), $term);
-
-// Récupération du nom de la catégorie et du format
-// $categorie  = get_field('categorie');
-// $format = get_field('format');
-// $reference = get_field('reference');
-
 $reference = get_field('reference');
 $type = get_field('type');
 $annee = get_field('annee');
-// $essais = get_field('categorie-acf');
 ?>
 
 <article class="container__photo flexcolumn">
@@ -29,7 +20,6 @@ $annee = get_field('annee');
                 <!-- Affiche les données ACF -->
                 <li>Référence :
                     <?php
-                    // $reference = get_post_meta(get_the_ID(), 'reference', true);
                     if ($reference) {
                         echo $reference;
                     } else {

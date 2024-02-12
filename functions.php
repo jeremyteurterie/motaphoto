@@ -154,13 +154,10 @@ function motaphoto_scripts()
 	wp_localize_script('ajax-filtrage', 'ajaxurl', admin_url('admin-ajax.php'));
 	wp_enqueue_script('lightbox', get_template_directory_uri() . '/js/lightbox.js', array('jquery'), null, true);
 
-	// Ajouter le CSS de FancyBox
 	wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
 
-	// Assurez-vous que jQuery est chargé
 	wp_enqueue_script('jquery');
 
-	// Ajouter le JS de FancyBox
 	wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), null, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -190,7 +187,6 @@ function filtrer_photos()
 		'paged' => $paged,
 	);
 
-	// Construire la requête de taxonomie conditionnellement
 	$tax_query = array();
 
 	if (!empty($categorie_id)) {

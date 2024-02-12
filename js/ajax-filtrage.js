@@ -1,8 +1,8 @@
 jQuery(document).ready(function ($) {
   $('.filter-categorie, .filter-format, .filter-order').change(function () {
-    var categorie = $('.filter-categorie').val();
-    var format = $('.filter-format').val();
-    var order = $('.filter-order').val(); // Récupérer la valeur de tri
+    let categorie = $('.filter-categorie').val();
+    let format = $('.filter-format').val();
+    let order = $('.filter-order').val(); // Récupérer la valeur de tri
 
     $.ajax({
       url: ajaxurl,
@@ -21,9 +21,9 @@ jQuery(document).ready(function ($) {
 });
 
 jQuery(document).ready(function ($) {
-  var currentCategorie = $('.filter-categorie').val();
-  var currentFormat = $('.filter-format').val();
-  var currentOrder = $('.filter-order').val();
+  let currentCategorie = $('.filter-categorie').val();
+  let currentFormat = $('.filter-format').val();
+  let currentOrder = $('.filter-order').val();
 
   function loadMorePhotos(page) {
     $.ajax({
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
   });
 
   $('#load-more').click(function () {
-    var page = $(this).data('page') + 1;
+    let page = $(this).data('page') + 1;
     loadMorePhotos(page);
   });
 });
